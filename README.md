@@ -6,16 +6,12 @@ together with `features = ["navigation.instant"]`. To reproduce:
 2. Open http://localhost:8000/
 3. Navigate to http://localhost:8000/map/
 
-In the browser's dev tools We can verify that
+In the browser's dev tools we can verify that
 ```html
 <script src="../javascripts/leaflet.js" type=""></script>
 <script src="../javascripts/maps_show_routs.js" type=""></script>
 ```
 are simply not added. If we refresh the page they appear (I think instant navigation doesn't apply on page reload). 
 
-The problem doesn't occur if we directly land on http://localhost:8000/map/ (because
-instant navigation starts from a different state). 
-
-
-
-
+The problem doesn't occur if we directly land on http://localhost:8000/map/ (probably because
+instant navigation starts from a different state). If I unset `site_url`, instant navigation seems to work fine.
