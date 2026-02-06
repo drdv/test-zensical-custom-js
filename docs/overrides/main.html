@@ -8,7 +8,7 @@
   {% endif %}
 {% endblock %}
 
-{% block scripts %}
+{% block content %}
   {{ super() }}
 
   {% if page and page.meta and page.meta.maps and config.extra.maps_javascript %}
