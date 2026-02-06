@@ -15,3 +15,10 @@ are simply not added. If we refresh the page they appear (I think instant naviga
 
 The problem doesn't occur if we directly land on http://localhost:8000/map/ (probably because
 instant navigation starts from a different state). If I unset `site_url`, instant navigation seems to work fine.
+
+Now I see the following [note in the docs](https://zensical.org/docs/setup/navigation/)
+(probably this means that if `site_url` is not set, instant navigation is disabled and
+that's why the problem disapears):
+
+"Note that you must set `site_url` when using instant navigation, as instant navigation
+relies on the generated `sitemap.xml` which will be empty if this setting is omitted."
