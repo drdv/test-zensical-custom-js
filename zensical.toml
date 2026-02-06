@@ -1,5 +1,6 @@
 [project]
 site_name = "Test custom javascript with instant navigation"
+site_url = "https://test-zensical-custom-js.pages.dev/"  # this causes the problem
 
 nav = [
   {"Home" = "index.md"},
@@ -24,13 +25,7 @@ features = [
     "navigation.top",
     "navigation.tracking",
     "search.highlight",
-	# -------------------------------
-	# instant navigation
-	# -------------------------------
     "navigation.instant",
-    "navigation.instant.prefetch",
-    "navigation.instant.progress",
-	# -------------------------------
 ]
 
 # -----------------------------------------------------

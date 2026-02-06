@@ -16,8 +16,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
-      - run: pip install zensical
-      - run: zensical build --clean
+      - run: make install-deps-ci
+      - run: make build RUN:=
       - uses: actions/upload-artifact@v4
         with:
           name: site-build

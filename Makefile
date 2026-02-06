@@ -1,5 +1,5 @@
 ZENSICAL := zensical
-DEPS = zensical==0.0.13
+DEPS = zensical
 RUN = uv run --with=$(DEPS)
 
 .PHONY: serve build clean
@@ -12,3 +12,6 @@ build: clean
 
 clean:
 	@rm -rf site
+
+install-deps-ci:
+	pip install zensical
