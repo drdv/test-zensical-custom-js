@@ -5,7 +5,13 @@ site_url = "https://test-zensical-custom-js.pages.dev/"  # this causes the probl
 nav = [
   {"Home" = "index.md"},
   {"Map" = "map.md"},
+  {"Map2" = "map2.md"},
 ]
+
+# extra_css = [
+#  "stylesheets/leaflet.css",
+#  "stylesheets/maps.css"
+#]
 
 [project.theme]
 custom_dir = "docs/overrides"
@@ -28,16 +34,24 @@ features = [
     "navigation.instant",
 ]
 
+
+
 # -----------------------------------------------------
 # custom config variables
 # -----------------------------------------------------
+[[project.extra_javascript]]
+path = "javascripts/subscribe_maps_interval_await.js"
+defer = true
 
+# Use with subscribe_maps_interval_await.js
 [[project.extra.maps_javascript]]
 path = "javascripts/leaflet.js"
 
+# Use with subscribe_maps_interval_await.js
 [[project.extra.maps_javascript]]
-path = "javascripts/maps_show_routs.js"
+path = "javascripts/show_map_routes.js"
 
+# TODO These CSS files should be merged, no need to make 2 requests
 [[project.extra.maps_css]]
 path = "stylesheets/leaflet.css"
 

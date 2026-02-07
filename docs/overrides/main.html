@@ -1,18 +1,41 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
+  {# The CSS files will get fetched again between navigation where they're removed
+     and added again. But this should be cached in browser when used with a proper server
+  #}
   {% if page and page.meta and page.meta.maps and config.extra.maps_css %}
-	{% for css in config.extra.maps_css %}
+	  {% for css in config.extra.maps_css %}
       <link rel="stylesheet" href="{{ css.path | url }}">
     {% endfor %}
   {% endif %}
+  <script>
+  console.log("<head> script loaded, it's not executed between page navigation")
+  </script>
 {% endblock %}
 
-{% block scripts %}
+{% block content %}
   {{ super() }}
+  <script>
+    console.log("content loaded, it's executed between page navigation")
+    {# Flag is set here because extrahead seems to refresh after .subscribe event #}
+    {% if page and page.meta and page.meta.maps %}
+    MAPS_ENABLED = {{ page.meta.maps }}
+    {% else %}
+    MAPS_ENABLED = false
+    {% endif %}
+  </script>
 
+  {# Added here as `scripts` and `extrahead` blocks won't get reloaded after page navigation
+     This approch should be used with the subscribe_maps_interval_await.js file
+
+     After every page change where the scripts are removed,
+     they will be fetched again with `no-cache` mode.
+     Zensical localhost will fetch it fresh, but GitHub Pages or
+     other proper server should use browser cache for these requests.
+  #}
   {% if page and page.meta and page.meta.maps and config.extra.maps_javascript %}
-	{% for script in config.extra.maps_javascript %}
+	  {% for script in config.extra.maps_javascript %}
       {{ script | script_tag }}
     {% endfor %}
   {% endif %}
